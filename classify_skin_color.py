@@ -1,13 +1,6 @@
-from flask import Flask, json, request
 from skimage import io
 import numpy as np
 import cv2
-
-api = Flask(__name__)
-
-@api.route('/classify/color', methods=['POST'])
-def classify_color():
-  return json.dumps({'color': classify_color_from_image(request.json['imagePath'])})
 
 def classify_color_from_image(image_path):
   result = ""
@@ -40,6 +33,3 @@ def classify_color_from_image(image_path):
     if (sum(dominant) > predefinicao):
       return cor
   return result
-
-if __name__ == '__main__':
-    api.run()
